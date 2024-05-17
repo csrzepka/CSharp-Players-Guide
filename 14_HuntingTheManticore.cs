@@ -65,7 +65,6 @@ int round = 1;
 // Player 1
 
 int manticoreDistance = AskForNumberInRange("Player 1, how far away from the city do you want to station the Manticore?", 0, 100);
-
 Console.Clear();
 
 // Player 2
@@ -74,32 +73,41 @@ Console.WriteLine("Player 2, it is your turn.");
 
 while (cityHealth > 0 && manticoreHealth > 0)
 {
+    // Display the status for the round.
     displayStatus(round, cityHealth, manticoreHealth);
 
+    // Display the amount of damage expected on a hit.
     int damage = SkorinsCannon(round);
 
-    // fire cannon
+    // Get a guess from the player on the Manticore distance.
     int guess = AskForNumber("Enter desired cannon range:");
 
+    // Display the outcome of the guess.
     if (guess > manticoreDistance)
+    {
         Console.WriteLine("That round OVERSHOT the target.");
+    }
     else if (guess < manticoreDistance)
+    {
         Console.WriteLine("That round FELL SHORT of the target.");
+    }
     else
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("That round was a DIRECT HIT!");
         Console.ForegroundColor = ConsoleColor.White;
-        // update manticore health
-        manticoreHealth -= damage;
+
+        manticoreHealth -= damage; // update manticore health
     }
 
-    if (manticoreHealth > 0) // Manticore is still alive
-        cityHealth--;
+	// Deal damage to the city if the Manticore is still alive.
+	if (manticoreHealth > 0) cityHealth--;
 
+    // Go on to the next round.
     round++;
 }
 
+// Display the outcome of the game.
 if (cityHealth > 0)
 {
     Console.ForegroundColor = ConsoleColor.Green;
@@ -113,11 +121,16 @@ else if (manticoreHealth > 0)
 else
     Console.WriteLine("Game ended unexpectedly!");
 
+// Wait before closing the game.
 Console.ForegroundColor = ConsoleColor.White;
 Console.WriteLine("Press any key to close...");
 Console.ReadKey();
 
-// Methods
+// ------------------------------- METHODS --------------------------------
+
+/// <summary>
+/// Gets a number fro mthe user, asking the prompt supplied by 'text'
+/// </summary>
 int AskForNumber(string text)
 {
     Console.Write(text + " ");
@@ -125,6 +138,9 @@ int AskForNumber(string text)
     return number;
 }
 
+/// <summary>
+/// Gets a number from the user and ensures it is in the given range.
+/// </summary>
 int AskForNumberInRange(string text, int min, int max)
 {
     while (true)
@@ -136,11 +152,12 @@ int AskForNumberInRange(string text, int min, int max)
 }
 
 /// <summary>
-/// Displays the status bar for the game.
+/// Displays the status of the game, including the round number, and the health
+/// of the city and the Manticore.
 /// </summary>
 void displayStatus(int round, int cityHealth, int manticoreHealth)
 {
-    // save current console color
+    // Save current console color
     ConsoleColor previousColor = Console.ForegroundColor;
 
     Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -160,12 +177,12 @@ void displayStatus(int round, int cityHealth, int manticoreHealth)
 
     Console.WriteLine();
     
-    // restore console color
+    // Restore console color
     Console.ForegroundColor = previousColor;
 }
 
 /// <summary>
-/// Displays heath as a fraction of max health, using colors.
+/// Displays heath as a fraction of max health, using colors as indicators.
 /// Health color is:
 /// - green if > 50%
 /// - yellow if <= 50%, and > 10%
@@ -173,10 +190,10 @@ void displayStatus(int round, int cityHealth, int manticoreHealth)
 /// </summary>
 void displayHealth(int currentHealth, int maxHealth)
 {
-    // save current console color
+    // Save current console color
     ConsoleColor previousColor = Console.ForegroundColor;
 
-    // set color
+    // Set health color
     float healthFraction = (float)currentHealth / maxHealth;
     if (healthFraction > 0.5f)
         Console.ForegroundColor = ConsoleColor.Green;
@@ -190,13 +207,13 @@ void displayHealth(int currentHealth, int maxHealth)
     Console.ForegroundColor = ConsoleColor.DarkGray;
     Console.Write($"/{maxHealth}");
 
-    // restore console color
+    // Restore console color
     Console.ForegroundColor = previousColor;
 }
 
 /// <summary>
 /// Prints expected damage done by Skorin's Magic Cannon based on the round and
-/// Returns the expeced damage.
+/// returns the expeced damage. Prints if the a magic gem is being used.
 /// </summary>
 int SkorinsCannon(int round)
 {
@@ -205,9 +222,10 @@ int SkorinsCannon(int round)
     bool fireGemActivates = round % 3 == 0;
     bool electricGemActivates = round % 5 == 0;
 
-    // save current console color
+    // Save current console color
     ConsoleColor previousColor = Console.ForegroundColor;
 
+    // Determine cannon damage and print if gem is being used.
     if (fireGemActivates && electricGemActivates)
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -231,7 +249,7 @@ int SkorinsCannon(int round)
         damage = 1;
     }
 
-    // print damage message
+    // Print damage message
     ConsoleColor damageColor = Console.ForegroundColor;
     Console.ForegroundColor = ConsoleColor.DarkGray;
     Console.Write("The cannon is expected to deal ");
@@ -240,7 +258,7 @@ int SkorinsCannon(int round)
     Console.ForegroundColor = ConsoleColor.DarkGray;
     Console.WriteLine(" damage this round.");
 
-    // restore console color
+    // Restore console color
     Console.ForegroundColor = previousColor;
     
     return damage;
