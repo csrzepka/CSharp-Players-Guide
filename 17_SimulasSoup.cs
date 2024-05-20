@@ -39,23 +39,16 @@ Objectives:
 
 (Dish, Ingredient, Seasoning) soup;
 
-Console.WriteLine("What dish would you like?");
-string dishText = AskForString("Soup, Stew, or Gumbo:");
+string dishText = AskForString("What dish would you like? (Soup, Stew, Gumbo):");
 soup.Item1 = ConvertToDish(dishText);
 
-Console.WriteLine("What main ingredient would you like?");
-string ingredientText = AskForString("Mushrooms, Chicken, Carrots, or Potaotes:");
+string ingredientText = AskForString("What main ingredient would you like? (Mushroom, Chicken, Carrot, Potato):");
 soup.Item2 = ConvertToIngredient(ingredientText);
 
-Console.WriteLine("Finally, what seasoning would you like?");
-string seasoningText = AskForString("Spicy, Salty, or Sweet:");
+string seasoningText = AskForString("Finally, what seasoning would you like? (Spicy, Salty, Sweet):");
 soup.Item3 = ConvertToSeasoning(seasoningText);
 
-Console.Write("Amazing! You got a ");
-Console.Write(soup.Item3 + " "); // Seasoning
-Console.Write(soup.Item2 + " "); // Main ingredient
-Console.Write(soup.Item1); // Dish
-Console.WriteLine("!");
+Console.Write($"Amazing! You got a {soup.Item3} {soup.Item2} {soup.Item1}");
 
 // METHODS
 
@@ -75,11 +68,11 @@ Dish ConvertToDish(string dishText) => dishText.ToLower() switch
 
 Ingredient ConvertToIngredient(string ingredientText) => ingredientText.ToLower() switch
 {
-    "mushrooms" => Ingredient.Mushrooms,
-    "chicken"   => Ingredient.Chicken,
-    "carrots"   => Ingredient.Carrots,
-    "potatoes"  => Ingredient.Potatoes,
-    _           => Ingredient.Mushrooms
+    "mushroom" => Ingredient.Mushroom,
+    "chicken"  => Ingredient.Chicken,
+    "carrot"   => Ingredient.Carrot,
+    "potato"   => Ingredient.Potato,
+    _          => Ingredient.Mushroom
 };
 
 Seasoning ConvertToSeasoning(string seasoningText) => seasoningText.ToLower() switch
@@ -92,24 +85,6 @@ Seasoning ConvertToSeasoning(string seasoningText) => seasoningText.ToLower() sw
 
 // ENUMS
 
-enum Dish
-{
-    Soup,
-    Stew,
-    Gumbo
-}
-
-enum Ingredient
-{
-    Mushrooms,
-    Chicken,
-    Carrots,
-    Potatoes
-}
-
-enum Seasoning
-{
-    Spicy,
-    Salty,
-    Sweet
-}
+enum Dish { Soup, Stew, Gumbo }
+enum Ingredient { Mushroom, Chicken, Carrot, Potato }
+enum Seasoning { Spicy, Salty, Sweet }

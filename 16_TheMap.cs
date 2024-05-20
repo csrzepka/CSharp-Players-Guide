@@ -74,10 +74,4 @@ string TerrainToString(Terrain terrain) => terrain switch
 
 // ENUMS
 
-enum Terrain 
-{
-    Water,
-    Mountains,
-    Plains,
-    City
-}
+enum Terrain { Water, Mountains, Plains, City }

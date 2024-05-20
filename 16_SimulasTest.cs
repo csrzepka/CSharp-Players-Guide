@@ -53,23 +53,14 @@ while (true)
     string actionText = AskForString($"The chest is {state}. What do you want to do?");
     ChestAction action = StringToChestAction(actionText);
 
-    switch (action)
-    {
-        case ChestAction.Open:
-            if (chest == ChestState.Closed) chest = ChestState.Open;
-            break;
-        case ChestAction.Close:
-            if (chest == ChestState.Open) chest = ChestState.Closed;
-            break;
-        case ChestAction.Lock:
-            if (chest == ChestState.Closed) chest = ChestState.Locked;
-            break;
-        case ChestAction.Unlock:
-            if (chest == ChestState.Locked) chest = ChestState.Closed;
-            break;
-        default:
-            break;
-    }
+    if (action == ChestAction.Open && chest == ChestState.Closed)
+        chest = ChestState.Open;
+    if (action == ChestAction.Close && chest == ChestState.Open)
+        chest = ChestState.Closed;
+    if (action == ChestAction.Lock && chest == ChestState.Closed)
+        chest = ChestState.Locked;
+    if (action == ChestAction.Unlock && chest == ChestState.Locked)
+        chest = ChestState.Closed;
 }
 
 // METHODS
@@ -98,18 +89,5 @@ ChestAction StringToChestAction(string action) => action.ToLower() switch
 
 // ENUMS
 
-enum ChestState
-{
-    Open,
-    Closed,
-    Locked
-}
-
-enum ChestAction
-{
-    Open,
-    Close,
-    Lock,
-    Unlock,
-    Unknown
-}
+enum ChestState { Open, Closed, Locked }
+enum ChestAction { Open, Close, Lock, Unlock, Unknown }
