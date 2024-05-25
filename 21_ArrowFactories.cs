@@ -30,8 +30,8 @@ Console.WriteLine($"Arrow cost: {arrow.Cost} gold");
 
 Arrow GetArrow()
 {
-	// Selection options
-	Console.WriteLine("""
+    // Selection options
+    Console.WriteLine("""
 		What arrow would you like?
 		1. Elite Arrow    (Steel Arrowhead, Plastic Fletching, 95cm shaft)
 		2. Beginner Arrow (Wood Arrowhead, Goose Feathers, 75cm shaft)
@@ -39,7 +39,7 @@ Arrow GetArrow()
 		4. Custom Arrow
 		""");
 
-	int selection = AskForIntInRange("Selection:", 1, 4);
+    int selection = AskForIntInRange("Selection:", 1, 4);
 
     return selection switch
     {
@@ -52,20 +52,20 @@ Arrow GetArrow()
 
 Arrow CreateCustomArrow()
 {
-	string arrowheadText = AskForString("Arrowhead [steel, wood, obsidian]:");
-	Arrowhead arrowhead = ConvertToArrowhead(arrowheadText);
+    string arrowheadText = AskForString("Arrowhead [steel, wood, obsidian]:");
+    Arrowhead arrowhead = ConvertToArrowhead(arrowheadText);
 
-	float shaftLength = AskForFloatInRange("Shaft length [between 60 and 100]:", 60.0f, 100.0f);
+    float shaftLength = AskForFloatInRange("Shaft length [between 60 and 100]:", 60.0f, 100.0f);
 
-	string fletchingText = AskForString("Fletching [plastic, turkey feathers, goose feathers]:");
-	Fletching fletching = ConvertToFletching(fletchingText);
+    string fletchingText = AskForString("Fletching [plastic, turkey feathers, goose feathers]:");
+    Fletching fletching = ConvertToFletching(fletchingText);
 
-	return new Arrow(arrowhead, shaftLength, fletching);
+    return new Arrow(arrowhead, shaftLength, fletching);
 }
 
 float AskForFloatInRange(string text, float min, float max)
 {
-    while(true)
+    while (true)
     {
         Console.Write(text + " ");
         float value = Convert.ToSingle(Console.ReadLine());
@@ -81,7 +81,7 @@ string AskForString(string text)
 
 int AskForIntInRange(string text, int min, int max)
 {
-    while(true)
+    while (true)
     {
         Console.Write(text + " ");
         int value = Convert.ToInt32(Console.ReadLine());
@@ -151,9 +151,9 @@ public class Arrow
         }
     }
 
-	public static Arrow CreateEliteArrow() => new Arrow(Arrowhead.Steel, 95.0f, Fletching.Plastic);
-	public static Arrow CreateBeginnerArrow() => new Arrow(Arrowhead.Wood, 75.0f, Fletching.GooseFeather);
-	public static Arrow CreateMarksmanArrow() => new Arrow(Arrowhead.Steel, 65.0f, Fletching.GooseFeather);
+    public static Arrow CreateEliteArrow() => new Arrow(Arrowhead.Steel, 95.0f, Fletching.Plastic);
+    public static Arrow CreateBeginnerArrow() => new Arrow(Arrowhead.Wood, 75.0f, Fletching.GooseFeather);
+    public static Arrow CreateMarksmanArrow() => new Arrow(Arrowhead.Steel, 65.0f, Fletching.GooseFeather);
 }
 
 // ENUMERATIONS

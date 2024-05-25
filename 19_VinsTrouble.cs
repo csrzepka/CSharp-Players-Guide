@@ -32,12 +32,12 @@ Console.WriteLine($"Arrow cost: {arrow.GetCost()} gold");
 
 float AskForFloatInRange(string text, float min, float max)
 {
-    while(true)
+    while (true)
     {
         Console.Write(text + " ");
         float length = float.Parse(Console.ReadLine() ?? "0");
-        
-        if(length >= min && length <= max)
+
+        if (length >= min && length <= max)
             return length;
     }
 
