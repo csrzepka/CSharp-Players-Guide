@@ -94,5 +94,5 @@ As a note, the ideas and concepts of working with persistent memory (i.e. readin
 
 Now that I've looked more closely at the requirements of the problem, it is time to work with *class-responsibility-collaborator cards* to try to create a design for this problem. The results of my design are below:
 
-![CRC Cards](crc_cards.jpg)
+![CRC Cards](crc-cards.jpg)
 
