@@ -1,4 +1,4 @@
-# Solution: Rock-Paper-Scissors
+# Solution: 15-Puzzle
 
 To solve this problem, I am going to refer to and follow the steps shown in the previous level of the book, Level 23 *Object-Oriented Design*, that includes *requirement gathering*, *noun extraction*, and using *CRC cards* as a tool to think through the design process.
 
@@ -83,7 +83,7 @@ This requirement introduces another functionality of the *Game* class; the abili
 
 Now that I've looked more closely at the requirements of the problem, it is time to work with *class-responsibility-collaborator cards* to try to create a design for this problem. The results of my design are below:
 
-
+![CRC Cards](crc-cards.jpg)
 
 The book's author has the following solution to this challenge:
 

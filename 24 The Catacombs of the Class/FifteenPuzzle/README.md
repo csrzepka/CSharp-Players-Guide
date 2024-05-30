@@ -17,7 +17,7 @@ The game of 15-Puzzle contains a set of numbered tiles on a board with a single 
 - The game needs to track and display how many moves the player has made.
 
 **Objectives**:
-- Use CRC cards (or a suitable alternative) to outline the objects the objects and classes that may be needed to make the game of 15-Puzzle. **You do not need to create this full game; just come up with a potential design as a starting point**.
+- Use CRC cards (or a suitable alternative) to outline the objects and classes that may be needed to make the game of 15-Puzzle. **You do not need to create this full game; just come up with a potential design as a starting point**.
 - **Answer this question**: Would your design need to change if we also wanted 3x3 or 5x5 boards?
 ***
 

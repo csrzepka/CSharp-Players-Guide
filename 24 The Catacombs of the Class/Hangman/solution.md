@@ -100,7 +100,7 @@ Now that I've looked more closely at the requirements of the problem, it is time
 
 The results of my design are below:
 
-
+![CRC Cards](crc-cards.jpg)
 
 The book's author has the following solution to this challenge:
 
